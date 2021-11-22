@@ -9,8 +9,12 @@ import Foundation
 
 //MARK: - ActivityData
 
-struct ActivityData {
+struct ActivityData: Decodable {
 
-    var activity: String?
+    let activity: String?
+
+    init(activity: String? = nil) {
+        self.activity = activity
+    }
 
 }

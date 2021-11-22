@@ -30,7 +30,7 @@ class AppCoordinator: Coordinator {
     
     func start() {
         
-        if !userDefaults.bool(forKey: "isAuthorize") {
+        if !userDefaults.bool(forKey: "1") {
             showRegistrationFlow()
         } else {
             showActivityFlow()
@@ -48,7 +48,7 @@ class AppCoordinator: Coordinator {
     
         registrationCoordinator.flowCompletionHandler = { [weak self] in
             self?.showActivityFlow()
-            self?.userDefaults.set(true, forKey: "isAuthorize")
+            self?.userDefaults.set(true, forKey: "1")
         }
         
         registrationCoordinator.start()

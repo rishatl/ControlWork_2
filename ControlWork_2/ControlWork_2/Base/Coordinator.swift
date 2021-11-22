@@ -8,7 +8,11 @@
 import Foundation
 import UIKit
 
+//MARK: - Completion
+
 typealias CoordinatorHandler = () -> ()
+
+//MARK: - Protocol Coordinator
 
 protocol Coordinator: AnyObject {
     

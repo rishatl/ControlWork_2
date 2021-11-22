@@ -7,26 +7,38 @@
 
 import UIKit
 
+//MARK: - AppCoordinator
+
 class AppCoordinator: Coordinator {
     
     var navigationController: UINavigationController
     var flowCompletionHandler: CoordinatorHandler?
+
+    //MARK: - Private Properties
     
     private var childCoordinators: [Coordinator] = []
-    
+
+    private var userDefaults = UserDefaults.standard
+
+    //MARK: - Initialize
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
+
+    //MARK: - Public
     
     func start() {
-        let isAuth = false
         
-        if !isAuth {
+        if !userDefaults.bool(forKey: "isAuthorize") {
             showRegistrationFlow()
         } else {
-            showMainFlow()
+            showActivityFlow()
         }
+
     }
+
+    //MARK: - Private
     
     private func showRegistrationFlow() {
         
@@ -35,15 +47,15 @@ class AppCoordinator: Coordinator {
         childCoordinators.append(registrationCoordinator)
     
         registrationCoordinator.flowCompletionHandler = { [weak self] in
-            self?.showMainFlow()
-            // TODO: remove registrationCoordinator from childCoordinators
+            self?.showActivityFlow()
+            self?.userDefaults.set(true, forKey: "isAuthorize")
         }
         
         registrationCoordinator.start()
     }
     
-    private func showMainFlow() {
-        
-        navigationController.setViewControllers([MainViewController()], animated: true)
+    private func showActivityFlow() {
+        navigationController.setViewControllers([ActivityViewController()], animated: true)
     }
+    
 }

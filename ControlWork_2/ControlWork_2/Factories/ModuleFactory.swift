@@ -7,25 +7,26 @@
 
 import Foundation
 
+//MARK: - Factory
+
 class ModuleFactory {
-    
-    func createEnterPhoneModule() -> EnterPhoneViewController {
-        EnterPhoneViewController()
+
+    //MARK: - Public
+
+    func createStartModule() -> StartViewController {
+        StartViewController()
     }
     
-    func createConformPhoneModule() -> ConformPhoneViewController {
-        ConformPhoneViewController()
+    func createSignInModule() -> SignInViewController {
+        SignInViewController()
     }
     
-    func createEnterPasswordModule() -> EnterPasswordViewController {
-        EnterPasswordViewController()
+    func createSignUpLoginModule() -> SignUpLoginViewController {
+        SignUpLoginViewController()
     }
-    
-    func createEnterNameModule() -> EnterNameViewController {
-        EnterNameViewController()
+
+    func createSignUpPasswordModule() -> SignUpPasswordViewController {
+        SignUpPasswordViewController()
     }
-    
-    func createEnterBirthdayModule() -> EnterBirthdayViewController {
-        EnterBirthdayViewController()
-    }
+
 }

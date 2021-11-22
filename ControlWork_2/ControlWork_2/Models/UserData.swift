@@ -7,10 +7,11 @@
 
 import Foundation
 
+//MARK: - UserData
+
 struct UserData {
     
-    var phoneNumber: String?
+    var login: String?
     var password: String?
-    var name: String?
-    var birthday: Date?
+
 }

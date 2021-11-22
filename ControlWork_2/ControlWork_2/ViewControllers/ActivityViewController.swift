@@ -14,6 +14,8 @@ class ActivityViewController: UIViewController {
 
     private var serviceSubscriber: AnyCancellable?
 
+    @Published private var activityData = ActivityData()
+
     private var contentTextView: UITextView = {
         let view = UITextView()
         view.layer.cornerRadius = 10
@@ -30,7 +32,10 @@ class ActivityViewController: UIViewController {
         setupUI()
     }
 
+    //MARK: - 
+
     private func setupUI() {
+
         title = "Activity"
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -42,31 +47,35 @@ class ActivityViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
 
+        contentTextView.centerText()
         view.addSubview(contentTextView)
+        contentTextView.translatesAutoresizingMaskIntoConstraints = false
 
-        contentTextView.snp.makeConstraints { make in
-            make.height.equalTo(205)
-            make.top.equalTo(segmentedControl.snp.bottom).offset(41)
-            make.leading.equalToSuperview().offset(19)
-            make.trailing.equalToSuperview().inset(18)
-        }
+        NSLayoutConstraint.activate([
+            contentTextView.heightAnchor.constraint(equalToConstant: 205),
+            contentTextView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            contentTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18),
+            view.bottomAnchor.constraint(equalTo: contentTextView.safeAreaLayoutGuide.bottomAnchor, constant: 100),
+            view.trailingAnchor.constraint(equalTo: contentTextView.trailingAnchor, constant: 18)
+        ])
 
+    }
+
+
+    private func fetchActivity() {
+
+        serviceSubscriber = DataManager().publisher
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { _ in }, receiveValue: { activity in
+                self.activityData = activity
+                self.contentTextView.text = self.activityData.activity
+            })
     }
 
     //MARK: - @objc Methods
 
     @objc func resetButtonTapped() {
-
+        fetchActivity()
     }
 
-    private func fetchActivity() {
-
-        serviceSubscriber = DataManager().dogPublisher
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { _ in }, receiveValue: { dog in
-                self.dog = dog
-            })
-    }
-
-    
 }

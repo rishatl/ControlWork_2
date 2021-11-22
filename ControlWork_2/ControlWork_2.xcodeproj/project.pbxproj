@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		453495C3274BEF1600D2AE84 /* ActivityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453495C2274BEF1600D2AE84 /* ActivityData.swift */; };
 		45A2D704274BFDFF0076D74C /* SignUpPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A2D703274BFDFF0076D74C /* SignUpPasswordViewController.swift */; };
+		45A2D70B274C0A420076D74C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A2D70A274C0A420076D74C /* DataManager.swift */; };
+		45A2D70F274C0B660076D74C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A2D70E274C0B660076D74C /* Extensions.swift */; };
 		45CEBD3F274BEBD000BECAA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CEBD3E274BEBD000BECAA9 /* AppDelegate.swift */; };
 		45CEBD41274BEBD000BECAA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CEBD40274BEBD000BECAA9 /* SceneDelegate.swift */; };
 		45CEBD46274BEBD000BECAA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45CEBD44274BEBD000BECAA9 /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 /* Begin PBXFileReference section */
 		453495C2274BEF1600D2AE84 /* ActivityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityData.swift; sourceTree = "<group>"; };
 		45A2D703274BFDFF0076D74C /* SignUpPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPasswordViewController.swift; sourceTree = "<group>"; };
+		45A2D70A274C0A420076D74C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		45A2D70E274C0B660076D74C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		45CEBD3B274BEBD000BECAA9 /* ControlWork_2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ControlWork_2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45CEBD3E274BEBD000BECAA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45CEBD40274BEBD000BECAA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,8 +68,17 @@
 		45A2D707274C09C50076D74C /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				45A2D70A274C0A420076D74C /* DataManager.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		45A2D70D274C0B590076D74C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				45A2D70E274C0B660076D74C /* Extensions.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		45CEBD32274BEBD000BECAA9 = {
@@ -87,6 +100,7 @@
 		45CEBD3D274BEBD000BECAA9 /* ControlWork_2 */ = {
 			isa = PBXGroup;
 			children = (
+				45A2D70D274C0B590076D74C /* Utilities */,
 				45A2D707274C09C50076D74C /* Service */,
 				45CEBD55274BEC1400BECAA9 /* Base */,
 				45CEBD62274BEC1500BECAA9 /* Coordinators */,
@@ -222,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45CEBD6A274BEC1500BECAA9 /* StartViewController.swift in Sources */,
+				45A2D70B274C0A420076D74C /* DataManager.swift in Sources */,
 				45CEBD6C274BEC1500BECAA9 /* SignInViewController.swift in Sources */,
 				45CEBD6D274BEC1500BECAA9 /* ActivityViewController.swift in Sources */,
 				453495C3274BEF1600D2AE84 /* ActivityData.swift in Sources */,
@@ -234,6 +249,7 @@
 				45CEBD41274BEBD000BECAA9 /* SceneDelegate.swift in Sources */,
 				45CEBD70274BEC1500BECAA9 /* AppCoordinator.swift in Sources */,
 				45A2D704274BFDFF0076D74C /* SignUpPasswordViewController.swift in Sources */,
+				45A2D70F274C0B660076D74C /* Extensions.swift in Sources */,
 				45CEBD68274BEC1500BECAA9 /* ModuleFactory.swift in Sources */,
 				45CEBD69274BEC1500BECAA9 /* CoordinatorFactory.swift in Sources */,
 			);

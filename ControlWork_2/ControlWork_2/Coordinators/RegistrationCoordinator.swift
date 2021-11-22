@@ -13,77 +13,68 @@ class RegistrationCoordinator: Coordinator {
     var flowCompletionHandler: CoordinatorHandler?
     
     private let moduleFactory = ModuleFactory()
-    private var userData = UserData(phoneNumber: nil, password: nil, name: nil, birthday: nil)
+    private var userData = UserData(login: nil, password: nil)
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
     func start() {
-        showEnterNameModule()
+        showStartModule()
     }
-    
-    private func showEnterPhoneModule() {
-        
-        let controller = moduleFactory.createEnterPhoneModule()
-        
+
+    private func showStartModule() {
+
+        let controller = moduleFactory.createStartModule()
+
         controller.completionHandler = { [weak self] value in
-            self?.userData.phoneNumber = value
-            self?.showConformPhoneModule()
-        }
-        
-        navigationController.pushViewController(controller, animated: true)
-    }
-    
-    private func showConformPhoneModule() {
-        
-        let controller = moduleFactory.createConformPhoneModule()
-        
-        controller.completionHandler = { [weak self] value in
-            if value {
-                self?.showEnterPasswordModule()
-            } else {
-                // show error
+            guard let value = value else { return }
+            switch value {
+            case .signInButtonTapped:
+                self?.showSignInModule()
+            case .signUpButtonTapped:
+                self?.showSignUpLoginModule()
             }
         }
+
+        navigationController.pushViewController(controller, animated: true)
+    }
+    
+    private func showSignInModule() {
+        
+        let controller = moduleFactory.createSignInModule()
+        
+        controller.completionHandler = { [weak self] value in
+            self?.userData.login = value[0]
+            self?.userData.password = value[1]
+            self?.flowCompletionHandler?()
+        }
         
         navigationController.pushViewController(controller, animated: true)
     }
     
-    private func showEnterPasswordModule() {
+    private func showSignUpLoginModule() {
         
-        let controller = moduleFactory.createEnterPasswordModule()
+        let controller = moduleFactory.createSignUpLoginModule()
+        
+        controller.completionHandler = { [weak self] value in
+            self?.userData.login = value
+            self?.showSignUpPasswordModule()
+        }
+        
+        navigationController.pushViewController(controller, animated: true)
+    }
+    
+    private func showSignUpPasswordModule() {
+        
+        let controller = moduleFactory.createSignUpPasswordModule()
         
         controller.completionHandler = { [weak self] value in
             self?.userData.password = value
             self?.flowCompletionHandler?()
-//            self?.showEnterBirthdayModule()
         }
         
         navigationController.pushViewController(controller, animated: true)
     }
     
-    private func showEnterNameModule() {
-        
-        let controller = moduleFactory.createEnterNameModule()
-        
-        controller.completionHandler = { [weak self] value in
-            self?.userData.name = value
-            self?.showEnterPhoneModule()
-        }
-        
-        navigationController.pushViewController(controller, animated: true)
-    }
-    
-    private func showEnterBirthdayModule() {
-        
-        let controller = moduleFactory.createEnterBirthdayModule()
-        
-        controller.completionHandler = { [weak self] value in
-            self?.userData.birthday = value
-            self?.flowCompletionHandler?()
-        }
-        
-        navigationController.pushViewController(controller, animated: true)
-    }
 }
